@@ -1,6 +1,3 @@
-/**
- * Potion
- */
 public class Potion implements IDrink {
 
     protected int lifes;

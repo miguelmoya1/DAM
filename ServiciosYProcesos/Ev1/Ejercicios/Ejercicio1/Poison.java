@@ -1,6 +1,3 @@
-/**
- * Poison
- */
 public class Poison implements IDrink {
     protected int lifes;
 
