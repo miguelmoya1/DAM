@@ -1,4 +1,6 @@
 using System;
 
-        System.Console.WriteLine("hola");
+public static void Main() {
+    Console.WriteLine("hola");
+}
     
