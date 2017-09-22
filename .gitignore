@@ -1,1 +1,7 @@
 *.class
+/AccesoADatos/Ev1/javaToCs/nbproject/private/
+/AccesoADatos/Ev1/javaToCs/build/
+/ServiciosYProcesos/Ev1/Ejercicios/Ejercicio2/nbproject/private/
+/ServiciosYProcesos/Ev1/Ejercicios/CompareVehicles/nbproject/private/
+/ServiciosYProcesos/Ev1/Ejemplos/MapExample/nbproject/private/
+/ServiciosYProcesos/Ev1/Ejemplos/MapExample/build/
