@@ -33,8 +33,6 @@ public class JavaToCs {
             PrintWriter writer = new PrintWriter(new BufferedWriter(
                     new FileWriter(fileName, true)));
             String line = reader.readLine();
-            
-            
             writer.println();
             
             while (line != null) {
