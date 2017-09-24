@@ -30,15 +30,15 @@ public class ForEachExamples {
             PrintWriter writer = new PrintWriter(new BufferedWriter(
                     new FileWriter("outputFile.txt", true)));
             
-            // Writting with foreach
+            // Writing with foreach
             for (String line : linesToWrite)
                 writer.println(line);
             
-            // Writting with for
+            // Writing with for
             for (int i = 0; i < linesToWrite.size(); i++)
                 writer.println(linesToWrite.get(i));
             
-            // Writting with .forEach()
+            // Writing with .forEach()
             linesToWrite.forEach(line -> writer.println(line));
             
             writer.close();
