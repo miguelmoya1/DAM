@@ -1,6 +1,5 @@
 package CompareVehicles;
 
-
 public abstract class Vehicle {
     protected double speed;
     protected Type type;

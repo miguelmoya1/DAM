@@ -1,7 +1,7 @@
 
 package CompareVehicles;
 
-public class MainClass {
+public class CompareVehicles {
 
     public static void main(String[] args) {
         
