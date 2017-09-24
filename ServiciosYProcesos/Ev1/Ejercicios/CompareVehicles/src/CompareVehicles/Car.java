@@ -12,7 +12,7 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public double getCostKm(double money) {
+    public double getCostKm() {
         return this._amountOfGasoline * this._price;
     }
     

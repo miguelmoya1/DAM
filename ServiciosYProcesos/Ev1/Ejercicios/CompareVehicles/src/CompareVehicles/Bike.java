@@ -7,7 +7,7 @@ public class Bike extends Vehicle {
     }
     
     @Override
-    public double getCostKm(double money) {
+    public double getCostKm() {
         return 0;
     }
 }

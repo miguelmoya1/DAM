@@ -1,8 +1,8 @@
 package CompareVehicles;
 
 public class Bus extends Vehicle {
-    private double _ticketPrice;
-    private double _distanceCover;
+    private final double _ticketPrice;
+    private final double _distanceCover;
 
     public Bus(double speed, double ticketPrice, double distanceCover) {
         super(speed, Type.BUS);
@@ -12,7 +12,7 @@ public class Bus extends Vehicle {
     }
 
     @Override
-    public double getCostKm(double money) {
+    public double getCostKm() {
         return this._ticketPrice / this._distanceCover;
     }
 }

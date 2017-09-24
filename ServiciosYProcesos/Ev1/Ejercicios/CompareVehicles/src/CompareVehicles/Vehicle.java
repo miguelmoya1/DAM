@@ -21,5 +21,5 @@ public abstract class Vehicle {
         return type;
     }
     
-    public abstract double getCostKm(double money);
+    public abstract double getCostKm();
 }
