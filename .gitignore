@@ -2,6 +2,7 @@
 *.jgp
 *.jpeg
 *.png
+.idea/
 
 ### NetBeans ###
 nbproject/private/
