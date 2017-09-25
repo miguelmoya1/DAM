@@ -136,3 +136,4 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+/ServiciosYProcesos/EjemploVelocidad/nbproject/private/
