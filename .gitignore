@@ -137,3 +137,6 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 /ServiciosYProcesos/EjemploVelocidad/nbproject/private/
+/AccesoADatos/testSpeed/nbproject/private/
+/AccesoADatos/PartirFichero/nbproject/private/
+/AccesoADatos/CompareFiles/nbproject/private/
