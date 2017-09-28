@@ -4,6 +4,7 @@
  */
 package comparefiles;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,9 +42,12 @@ public class Id3 {
             } else {
                 int num = (buf[6] + buf[7] + buf[8] + buf[9]);
                 System.out.println(num);
-                
+
                 byte[] head = new byte[50000];
-                read.read(head, 0, 50000);
+                read.read(head);
+                for (byte a : head) {
+                    System.out.print((char) a);
+                }
             }
 
             read.close();
