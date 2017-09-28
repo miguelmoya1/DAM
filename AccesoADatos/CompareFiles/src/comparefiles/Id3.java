@@ -4,21 +4,15 @@
  */
 package comparefiles;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class CompareFiles {
+public class Id3 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -29,29 +23,33 @@ public class CompareFiles {
         } else {
             fileToRead = args[0];
         }
-        
+
         List<Byte> list = new ArrayList<>();
         List<Byte> list1 = new ArrayList<>();
-        
+
         try {
             InputStream read = new FileInputStream(
                     new File(fileToRead));
-            
-        int sizeFile = (int) new File(fileToRead).length();
+
+            int sizeFile = (int) new File(fileToRead).length();
 
             byte[] buf = new byte[10];
-            
+
             read.read(buf);
             if ((buf[0] != 'I') || (buf[1] != 'D') || (buf[2] != '3')) {
-                System.out.println("No es un fichero mp3 v2");
+                System.err.println("No es un fichero mp3 v2");
             } else {
+                int num = (buf[6] + buf[7] + buf[8] + buf[9]);
+                System.out.println(num);
                 
+                byte[] head = new byte[50000];
+                read.read(head, 0, 50000);
             }
 
             read.close();
 
         } catch (IOException e) {
-            System.out.println("No se ha podido leer el fichero.");
+            System.err.println("No se ha podido leer el fichero.");
         }
     }
 }
