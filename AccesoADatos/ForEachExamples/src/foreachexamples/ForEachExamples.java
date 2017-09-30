@@ -24,7 +24,7 @@ public class ForEachExamples {
         linesToWrite.add("Line 4 to add");
         linesToWrite.add("Line 5 to add");
         
-        System.out.println("Writting...");
+        System.out.println("Writing...");
         
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(
