@@ -1,0 +1,17 @@
+<datos>
+    <dato>
+        <mes>Enero</mes>
+        <ventas>2000</ventas>
+        <acumulado>2000</acumulado>
+    </dato>
+    <dato>
+        <mes>Febrero</mes>
+        <ventas>3000</ventas>
+        <acumulado>5000</acumulado>
+    </dato>
+    <dato>
+        <mes>Marzo</mes>
+        <ventas>4000</ventas>
+        <acumulado>9000</acumulado>
+    </dato>
+</datos>
