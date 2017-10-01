@@ -3,6 +3,7 @@
 *.jpeg
 *.png
 .idea/
+*.zip
 
 ### NetBeans ###
 nbproject/private/
@@ -142,3 +143,5 @@ fabric.properties
 /AccesoADatos/CompareFiles/nbproject/private/
 /ProgramacionDeServiciosYProcesos/Ev1/Ejemplos/Java8/nbproject/private/
 /AccesoADatos/CsvToXml/nbproject/private/
+/ProgramacionDeServiciosYProcesos/Ev1/Ejercicios/Companies/nbproject/private/
+/ProgramacionDeServiciosYProcesos/Ev1/Ejercicios/NoChildrenAllowed/nbproject/private/
