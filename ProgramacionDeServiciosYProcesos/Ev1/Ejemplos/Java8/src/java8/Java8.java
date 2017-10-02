@@ -3,21 +3,16 @@
  */
 package java8;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
 
 public class Java8 {
 
     public static void main(String[] args) {
-        Instant i = Instant.EPOCH;
-        System.out.println(i.toString());
+        List<Integer> lista = Arrays.asList(100, 10, 2, 6, 54, 32, 67, 12, 7);
         
-        System.out.println(LocalDate.MAX);
+        lista.stream().filter(x -> x > 7).map(Integer::reverse).forEach(System.out::println);
         
-        LocalDate date = LocalDate.parse("9999-05-02");
-        LocalDate now = LocalDate.now();
-        System.out.println("Total days: " + now.until(date, ChronoUnit.DAYS));
     }
     
 }
