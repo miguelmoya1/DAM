@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        textView = (TextView) findViewById(R.id.textV);
     }
 
     @Override
@@ -31,7 +36,17 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.op1) {
+            textView.setText("opcion1");
+            return true;
+        }else if (id == R.id.op2) {
+            textView.setText("opcion2");
+            return true;
+        }else if (id == R.id.op3) {
+            textView.setText("opcion3");
+            return true;
+        }else if (id == R.id.op4) {
+            textView.setText("opcion4");
             return true;
         }
 
