@@ -1,21 +1,43 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Miguel Moya Ortega
  */
 package filereverse;
 
-/**
- *
- * @author Miiguel
- */
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Arrays;
+
 public class FileReverse {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            File file = 
+                    new File("fichero.jpg");
+            InputStream reader = new FileInputStream(file);
+            OutputStream writer = new FileOutputStream(
+                    new File("fichero2.gpj"));
+            byte[] buf = new byte[(int) file.length()];
+            int cantidadLeida;
+            while ((cantidadLeida = reader.read(buf, 0,
+                    (int) file.length())) > 0) {
+                byte[] buf2 = new byte [(int) file.length()];
+                
+                for (int i = 0, last = buf2.length; i < file.length(); i++, last--) 
+                    buf2[i] = buf[last];
+                
+                writer.write(Arrays.asList(buf), 0, cantidadLeida);
+            }
+            reader.close();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Ha habido problemas: "
+                    + e.getMessage());
+        }
+
     }
-    
+
 }
