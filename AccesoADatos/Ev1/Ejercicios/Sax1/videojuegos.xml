@@ -1,0 +1,30 @@
+<videojuegos>
+    <videojuego>
+        <titulo>Tetris</titulo>
+        <plataforma>Game Boy</plataforma>
+        <genero>Puzzle</genero>
+        <anyo>1989</anyo>
+        <resumen></resumen>
+    </videojuego>
+    <videojuego>
+        <titulo>League of legends</titulo>
+        <plataforma>PC</plataforma>
+        <genero>Estrategia</genero>
+        <anyo>2010</anyo>
+        <resumen></resumen>
+    </videojuego>
+    <videojuego>
+        <titulo>Rainbow Six Siege</titulo>
+        <plataforma>PC</plataforma>
+        <genero>Shooter</genero>
+        <anyo>2012</anyo>
+        <resumen></resumen>
+    </videojuego>
+    <videojuego>
+        <titulo>Counter Strike</titulo>
+        <plataforma>PC</plataforma>
+        <genero>Shooter</genero>
+        <anyo>1989</anyo>
+        <resumen></resumen>
+    </videojuego>
+</videojuegos>
