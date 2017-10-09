@@ -37,4 +37,14 @@ public class Student {
         this.subjects = subjects;
         return this;
     }
+
+    public Student(String name, byte age, List<String> subjects) {
+        this.name = name;
+        this.age = age;
+        this.subjects = subjects;
+    }
+    
+    public String toString() {
+        return this.name + "(" + this.age + ")";
+    }
 }
