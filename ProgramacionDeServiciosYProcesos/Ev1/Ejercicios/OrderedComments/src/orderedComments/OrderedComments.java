@@ -4,7 +4,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Miguel Moya Ortega
@@ -12,29 +20,48 @@ import java.io.IOException;
 public class OrderedComments {
 
     public static void main(String[] args) {
-        try ( BufferedReader reader = new BufferedReader(new FileReader(
-                    new File("comments.txt")));) {
-             
-        } catch (FileNotFoundException ex) {
-            System.out.println("No se ha podido encontrar el fichero.");
-        } catch (IOException ex) {
-            System.out.println("No se sabe por qué.");
-        } 
-    }
+        List<Comment> comments = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(
+                new File("comments.txt")));
+                PrintWriter writer = new PrintWriter(new FileWriter("ordered_comments.txt"))) {
+            String line = reader.readLine();
+            System.out.println("Reading...");
+            while (line != null) {
+                String[] lineArray = line.split(";");
+                String[] date = lineArray[2].split("/");
+                comments.add(new Comment(
+                        lineArray[0],
+                        lineArray[1],
+                        ZonedDateTime.parse((date[2] + "-" + date[1] + "-" + date[0]
+                                + "T" + lineArray[3]
+                                + "+01:00[" + lineArray[4]) + "]")
+                ));
 
-    /**
-     * In the main method, read the file and create a Comment object for every
-     * comment (you can use the String's split method to divide fields), change
-     * the timezone of each comment's date to “Europe/Madrid” (use
-     * withZoneSameInstant method), and add comments to a List. After that,
-     * order the list by date of comments using a Comparator. To compare a date
-     * to another (in seconds), you can use: date1.until(date2,
-     * ChronoUnit.SECONDS) → “date2 - date1” in seconds Service and Process
-     * Programming – Java reinforcement 4. Finally, create a new file called
-     * ordered_comments.txt and save all comments in the same format as before
-     * but they will be ordered by date and in the same timezone (Madrid). To
-     * convert the ZonedDateTime to the date format in the file use the method
-     * explained in subsection 2.3, with this pattern: DateTimeFormatter
-     * formatter = DateTimeFormatter.ofPattern("dd/MM/yyy;HH:mm:ss;VV");*
-     */
+                line = reader.readLine();
+            }
+            System.out.println("Formatting...");
+            comments.stream().map(c -> c.setDate(c.getDate().withZoneSameInstant(ZoneId.of("Europe/Madrid"))));
+
+            comments.add(new Comment("usuario1", "hola comentario", ZonedDateTime.now()));
+            comments.add(new Comment("usuario2", "adios", ZonedDateTime.now()));
+
+            comments.sort((c1, c2) -> c1.getDate().compareTo(c2.getDate()));
+
+            DateTimeFormatter formatter
+                    = DateTimeFormatter.ofPattern("dd/MM/yyy;HH:mm:ss;VV");
+
+            System.out.println("Writing...");
+            comments.forEach(c -> writer.println(c.getUsername() + ";"
+                    + c.getComment()
+                    + c.getDate()
+                            .withZoneSameInstant(ZoneId.of("Europe/Madrid"))
+                            .format(formatter)
+            ));
+            System.out.println("Done!");
+        } catch (FileNotFoundException ex) {
+            System.err.println("No se ha podido encontrar el fichero.");
+        } catch (IOException ex) {
+            System.err.println("No se sabe por qué.");
+        }
+    }
 }
