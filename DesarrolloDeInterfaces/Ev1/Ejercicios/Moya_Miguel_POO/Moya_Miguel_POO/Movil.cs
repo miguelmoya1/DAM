@@ -5,21 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Moya_Miguel_POO {
-    class Movil : Telefono {
-        protected loing SegundosConsumidos;
+    class Movil : Telefono, IComparable {
+        protected long SegundosConsumidos { get; set; }
 
-        /**
-                    • SegundosConsumidos, LongInt.
-                    Los métodos que como mínimo tendrá esta clase son:
-                    • Constructor sin argumentos.
-                    • Constructor con todos los atributos.
-                    • Constructor de copia.
-                    • Destructor.
-                    • ToString, creará una cadena de texto separando todos y cada uno de los
-                    atributos por el carácter #.
-                    • Implementa el interfaz Icomparable para que la clase Movil se pueda ordenar.Un
-                    Movil es mayor que otro según su nombre.
-                    • Propiedades para todos y cada uno de los atributos.
-        **/
+        public Movil() : base() { }
+
+        public Movil(long id, string numero, string propietario, string tarifa, long segundosConsumidos) : base(id, numero, propietario, tarifa) {
+            SegundosConsumidos = segundosConsumidos;
+        }
+
+        public Movil(Movil m): base(m) {
+            SegundosConsumidos = m.SegundosConsumidos;
+        }
+
+        ~Movil() { }
+        public int CompareTo(object m) {
+            if (m == null) {
+                throw new ArgumentNullException(nameof(m));
+            }
+            return ((Movil)m).Propietario.CompareTo(Propietario);
+        }
+
+        public override string ToString() => base.ToString() + "#" + SegundosConsumidos;
     }
 }
