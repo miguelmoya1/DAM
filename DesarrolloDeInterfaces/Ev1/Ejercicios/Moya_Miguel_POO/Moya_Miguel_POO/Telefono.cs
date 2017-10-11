@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Moya_Miguel_POO {
+﻿namespace Moya_Miguel_POO {
     class Telefono {
         protected long Id { get; }
         protected string Numero {
