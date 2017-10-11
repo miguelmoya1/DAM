@@ -8,7 +8,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 
 /**
  *
@@ -38,6 +37,7 @@ public class FindCountries {
                         Element eElement = (Element) nNode;
                         if (eElement.getAttribute("translations").toLowerCase()
                                 .contains(toFind.toLowerCase())) {
+                            
                             System.out.println(eElement.getAttribute("name"));
                         }
                     }
