@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Casillas</string>
+    <string name="title_activity_game">Jugando...</string>
+    <string name="action_settings">Settings</string>
+    <string name="elementsX">Número de elementos en el eje X</string>
+    <string name="elementsY">Número de elementos en el eje Y</string>
+    <string name="plots">Número de tramas</string>
+    <string name="colors">Colores</string>
+    <string name="numbers">Números</string>
+    <string name="sound">Sonido</string>
+    <string name="vibration">vibracion</string>
+    <string name="play">Jugar</string>
+</resources>
