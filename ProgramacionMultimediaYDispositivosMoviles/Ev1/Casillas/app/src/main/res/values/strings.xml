@@ -8,6 +8,6 @@
     <string name="colors">Colores</string>
     <string name="numbers">Números</string>
     <string name="sound">Sonido</string>
-    <string name="vibration">vibracion</string>
+    <string name="vibration">Vibracion</string>
     <string name="play">Jugar</string>
 </resources>
