@@ -1,18 +1,23 @@
 ﻿namespace Moya_Miguel_POO {
     class Telefono {
-        protected long Id { get; }
-        protected string Numero {
-            get { return "+34-" + Numero; }
-            set { if (value.Length > 9) Numero = value; }
+        protected long id;
+        protected string numero;
+        protected string propietario;
+        protected string tarifa;
+
+        public long Id { get; }
+        public string Numero {
+            get { return "+34-" + numero; }
+            set { numero = value.Length <= 9 ? value : "000000000"; }
         }
-        protected string Propietario {
-            get { return Propietario; }
-            set { if (value.Length > 255) Propietario = value; }
+        public string Propietario {
+            get { return propietario; }
+            set { propietario = value.Length < 255 ? value : ""; }
         }
-        protected enum TIPO { fijo = 9, movil = 6, especial = 8 };
-        protected string Tarifa {
-            get { return Tarifa; }
-            set { if (value.Length > 255) Tarifa = value; }
+        public enum TIPO { fijo = 9, movil = 6, especial = 8 };
+        public string Tarifa {
+            get { return tarifa; }
+            set { tarifa = value.Length < 255 ? value : ""; }
         }
 
         public Telefono() { }
@@ -33,6 +38,6 @@
 
         ~Telefono() { }
 
-        public override string ToString() => Id + "#" + Numero + "#" + Propietario + "#" + Tarifa;
+        public override string ToString() => Id + " # " + Numero + " # " + Propietario + " # " + Tarifa;
     }
 }
