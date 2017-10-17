@@ -34,7 +34,7 @@ namespace capa_negocio {
             int filas_almacenadas;
 
             // Aquí procesaria los datos en según las necesidades de la empresa
-            if (!cartelera.Exists(pe => pe.Titulo.Equals(titulo))) {
+            if (!cartelera.Exists(film => film.Titulo.Equals(titulo))) {
                 // Añado la película a la cartelera
                 Pelicula p = new Pelicula(titulo, descripcion, duracion, edad);
                 filas_almacenadas = _bd.añadir(p);
