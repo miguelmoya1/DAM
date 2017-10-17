@@ -30,10 +30,10 @@ namespace capa_presentacion {
             // Envío los datos a la capa de negocio
             label_resultado.ForeColor = Color.Red;
             if (box_titulo.Text != "")
-                if (box_duracion.Value != 0)
+                if (Convert.ToInt32(box_duracion.Value) != 0)
                     filas_almacenadas = negocio.Añadir(box_titulo.Text,
-                                      System.Convert.ToInt32(box_edad.Value),
-                                      System.Convert.ToInt32(box_duracion.Value),
+                                      Convert.ToInt32(box_edad.Value),
+                                      Convert.ToInt32(box_duracion.Value),
                                       box_descripcion.Text);
                 else label_resultado.Text = "Error, la duración tiene que ser diferente de 0";
             else label_resultado.Text = "Error, el titulo no puede estar vacío";
@@ -41,6 +41,9 @@ namespace capa_presentacion {
             if (filas_almacenadas == 1) {
                 label_resultado.ForeColor = Color.Black;
                 label_resultado.Text = "La pelicula se almacenó en la base de datos";
+                box_titulo.Text = "";
+                box_edad.Value = 0;
+                box_duracion.Value = 0;
 
                 // relleno el datagrid de cartelera
                 leer_cartelera();
@@ -61,6 +64,8 @@ namespace capa_presentacion {
                 dataGridView1.Rows.Add();
                 i++;
             }
+
+            aux.Sort();
 
             i = 0;
             while (i < aux.Count) {
