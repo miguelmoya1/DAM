@@ -2,7 +2,11 @@
 
 namespace Moya_Miguel_POO {
     class Movil : Telefono, IComparable {
-        protected long SegundosConsumidos { get; set; }
+        protected long segundosConsumidos;
+        public long SegundosConsumidos {
+            get { return segundosConsumidos; }
+            set { segundosConsumidos = value; }
+        }
 
         public Movil() : base() { }
 
@@ -10,7 +14,7 @@ namespace Moya_Miguel_POO {
             SegundosConsumidos = segundosConsumidos;
         }
 
-        public Movil(Movil m): base(m) {
+        public Movil(Movil m) : base(m) {
             SegundosConsumidos = m.SegundosConsumidos;
         }
 
@@ -22,6 +26,6 @@ namespace Moya_Miguel_POO {
             return ((Movil)m).Propietario.CompareTo(Propietario);
         }
 
-        public override string ToString() => base.ToString() + "#" + SegundosConsumidos;
+        public override string ToString() => base.ToString() + " # " + SegundosConsumidos;
     }
 }
