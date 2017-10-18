@@ -49,7 +49,9 @@ namespace capa_negocio {
         }
 
         public int Borrar(Pelicula p) {
-            return _bd.borrar(p);
+            int i = _bd.borrar(p);
+            _cartelera = _bd.leer_cartelera();
+            return i;
         }
     }
 }

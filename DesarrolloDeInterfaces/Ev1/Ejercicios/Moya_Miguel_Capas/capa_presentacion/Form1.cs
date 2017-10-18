@@ -58,25 +58,35 @@ namespace capa_presentacion {
             // Obtengo la lista de peliculas accediendo a la propiedad cartelera
             // del objeto negocio
             aux = negocio.cartelera;
+            aux.Sort();
 
             dataGridView1.Rows.Clear();
-            while (i < aux.Count) {
+            while (i < aux.Count - 1) {
                 dataGridView1.Rows.Add();
                 i++;
             }
 
-            aux.Sort();
-
             i = 0;
             while (i < aux.Count) {
-                dataGridView1.Rows[i + 1].Cells[0].Value = aux[i].Titulo;
-                dataGridView1.Rows[i + 1].Cells[1].Value = aux[i].Duracion.ToString();
+                dataGridView1.Rows[i].Cells[0].Value = aux[i].Titulo;
+                dataGridView1.Rows[i].Cells[1].Value = aux[i].Duracion.ToString();
                 i++;
             }
         }
 
         private void box_titulo_TextChanged(object sender, EventArgs e) {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            if (dataGridView1.CurrentRow != null) {
+                int i = dataGridView1.CurrentRow.Index;
+                List<Pelicula> aux = negocio.cartelera;
+                aux.Sort();
+                negocio.Borrar(aux[i]);
+                negocio.cartelera.Remove(aux[i]);
+                leer_cartelera();
+            }
         }
     }
 }
