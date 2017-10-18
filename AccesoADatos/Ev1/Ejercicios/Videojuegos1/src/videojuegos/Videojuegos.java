@@ -36,6 +36,7 @@ public class Videojuegos {
             opcion = scanner.nextByte();
             switch (opcion) {
                 case 1:
+                
                     String titulo,
                      genero,
                      plataforma,
