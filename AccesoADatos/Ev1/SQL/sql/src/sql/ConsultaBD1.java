@@ -17,62 +17,50 @@ public class ConsultaBD1 {
 
     public static void main(String[] args) {
         try {
-        Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver");
 
-        String url = "jdbc:postgresql://localhost:5432/polos";
-        String usuario = "postgres";
-        String password = "mi1995guel";
-        Connection con = DriverManager.getConnection(url, usuario, password);
+            String url = "jdbc:postgresql://localhost:5432/polos";
+            String usuario = "postgres";
+            String password = "mi1995guel";
+            Connection con = DriverManager.getConnection(url, usuario, password);
+
+            boolean finish = false;
+            Scanner scanner = new Scanner(System.in);
+            byte opcion;
+
+            while (!finish) {
+                System.out.println("¿Qué operación desea realizar?");
+                System.out.println("    1) Añadir polo.");
+                System.out.println("    2) Ver polos.");
+                System.out.println("    0) Salir.");
+                opcion = scanner.nextByte();
+                scanner.nextLine();
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Introduce la marca:");
+                        String marca = scanner.nextLine();
+                        System.out.println("Introduce el sabor:");
+                        String sabor = scanner.nextLine();
+                        System.out.println("Introduce el precio:");
+                        double price = scanner.nextDouble();
+                        addPolo(con, marca, sabor, price);
+                        break;
+                    case 2:
+                        showPolos(con);
+                        break;
+                    case 0:
+                        finish = !finish;
+                        break;
+                    default:
+                        System.out.println("Opción no reconocida.");
+                }
+            }
+            con.close();
         } catch (ClassNotFoundException ex) {
             System.out.println("No se ha podido encontrar la clase");
         } catch (SQLException ex) {
             System.out.println("Error en la sql.");
         }
-
-        boolean finish = false;
-        Scanner scanner = new Scanner(System.in);
-        byte opcion;
-
-        while (!finish) {
-            System.out.println("¿Qué operación desea realizar?");
-            System.out.println("    1) Añadir polo.");
-            System.out.println("    2) Ver polos.");
-            System.out.println("    0) Salir.");
-            opcion = scanner.nextByte();
-            scanner.nextLine();
-            switch (opcion) {
-                case 1:
-                    System.out.println("Introduce la marca:");
-                    String marca = scanner.nextLine();
-                    System.out.println("Introduce el sabor:");
-                    String sabor = scanner.nextLine();
-                    System.out.println("Introduce el precio:");
-                    double price = scanner.nextDouble();
-                    try {
-                    addPolo(con, marca, sabor, price);
-                    } catch (ClassNotFoundException ex) {
-                        System.out.println("No se ha encontrado la clase.");
-                    } catch (SQLException ex) {
-                        System.out.println("Error en la sql.");
-                    }
-                    break;
-                case 2:
-                    try {
-                        showPolos(con);
-                    } catch (ClassNotFoundException ex) {
-                        System.out.println("No se ha encontrado la clase.");
-                    } catch (SQLException ex) {
-                        System.out.println("Error en la sql.");
-                    }
-                    break;
-                case 0:
-                    finish = !finish;
-                    break;
-                default:
-                    System.out.println("Opción no reconocida.");
-            }
-        }
-        con.close();
     }
 
     /**
@@ -121,8 +109,11 @@ public class ConsultaBD1 {
                 + sabor + "', '" + precio + "');";
 
         int cantidad = statement.executeUpdate(sql);
-        if (cantidad < 0) System.out.println("Se ha guardado correctamente.");
-        else System.err.println("No se ha podido guardar.");
+        if (cantidad < 0) {
+            System.out.println("Se ha guardado correctamente.");
+        } else {
+            System.err.println("No se ha podido guardar.");
+        }
         statement.close();
     }
 }
