@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="117.0" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="currencyconvert.FXMLDocumentController">
+    <children>
+      <Text fx:id="text" layoutX="14.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="293.00000190734863" />
+      <TextField fx:id="textField" layoutX="14.0" layoutY="49.0" onKeyReleased="#changeText" prefHeight="25.0" prefWidth="293.0" />
+      <ChoiceBox fx:id="choise" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="293.0" />
+    </children>
+</AnchorPane>
