@@ -10,12 +10,19 @@ using System.Windows.Forms;
 
 namespace Ejercicio2 {
     public partial class Form2 : Form {
-        public Form2() {
+        Form1 f;
+        public Form2(Form1 form) {
+            f = form;
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void Form2_Load(object sender, EventArgs e) {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            f.Show();
+            Close();
         }
     }
 }
