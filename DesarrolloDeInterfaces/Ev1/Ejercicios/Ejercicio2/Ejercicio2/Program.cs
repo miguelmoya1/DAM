@@ -13,7 +13,7 @@ namespace Ejercicio2 {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ejercicio3());
+            Application.Run(new Ejercicio4());
         }
     }
 }
