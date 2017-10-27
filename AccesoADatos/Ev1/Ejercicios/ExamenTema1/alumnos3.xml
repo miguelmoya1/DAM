@@ -1,0 +1,14 @@
+<personas>
+<persona codigo="1" >
+<nombre>Persona</nombre>
+<apellidos>Uno</apellidos>
+</persona>
+<persona codigo="3" >
+<nombre>Otro</nombre>
+<apellidos>Tres</apellidos>
+</persona>
+<persona codigo="2">
+<nombre>Persona</nombre>
+<apellidos>Dos</apellidos>
+</persona>
+</personas>
