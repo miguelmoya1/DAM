@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         else if (sensorEvent.sensor.getType() == Sensor.TYPE_LIGHT) {
             text2.setText("");
             text2.append("X: " + sensorEvent.values[0]);
-        } else
+        } else {
+
+        }
     }
 
     @Override
