@@ -1,0 +1,6 @@
+<personas>
+    <persona codigo="3" conflicto="si">
+        <nombre>Y uno mas</nombre>
+        <apellidos>Tres</apellidos>
+    </persona>
+</personas>
