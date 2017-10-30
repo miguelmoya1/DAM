@@ -7,11 +7,9 @@ package thread;
 public class Threads extends Thread{
 
     public static void main(String[] args) {
-        Thread t = new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
-                
-            }
-        });
+        Do d = new Do();
+        System.out.println("Start");
+        d.start();
     }
     
 }
