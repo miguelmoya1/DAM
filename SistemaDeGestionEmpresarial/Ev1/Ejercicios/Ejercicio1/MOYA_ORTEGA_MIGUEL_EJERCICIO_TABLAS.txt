@@ -1,0 +1,510 @@
+OBJECT Table 50000 TIPOS DE JUEGOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=02/11/17;
+    Time=16:08:27;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;CODIGO_TIPO_JUEGO   ;Code10         }
+    { 2   ;   ;DESCRIPCION         ;Text30         }
+    { 3   ;   ;CLASE DE JUEGO      ;Option        ;OptionString=Mesa,Did†cticos,F°sicos }
+    { 4   ;   ;TOTAL JUEGOS TERMINADOS;Integer    ;FieldClass=FlowField;
+                                                   CalcFormula=Count(JUEGOS WHERE (TIPO DE JUEGOS=FIELD(CODIGO_TIPO_JUEGO),
+                                                                                   FECHA FIN=FILTER(<>'')));
+                                                   Editable=No }
+    { 5   ;   ;TOTAL JUEGOS SIN TERMINAR;Integer  ;FieldClass=FlowField;
+                                                   CalcFormula=Count(JUEGOS WHERE (TIPO DE JUEGOS=FIELD(CODIGO_TIPO_JUEGO),
+                                                                                   FECHA FIN=FILTER(='')));
+                                                   Editable=No }
+    { 6   ;   ;TOTAL DE JUEGOS     ;Integer       ;FieldClass=FlowField;
+                                                   CalcFormula=Count(JUEGOS WHERE (TIPO DE JUEGOS=FIELD(CODIGO_TIPO_JUEGO)));
+                                                   Editable=No }
+    { 7   ;   ;MAXIMA PUNTUACION VISTOSIDAD;Integer;
+                                                   FieldClass=FlowField;
+                                                   CalcFormula=Max(JUEGOS.INTERESANTE WHERE (TIPO DE JUEGOS=FIELD(CODIGO_TIPO_JUEGO)));
+                                                   Editable=No }
+    { 8   ;   ;MINIMA PUNTUACI‡N VISTOSIDAD;Integer;
+                                                   FieldClass=FlowField;
+                                                   CalcFormula=Min(JUEGOS.INTERESANTE WHERE (TIPO DE JUEGOS=FIELD(CODIGO_TIPO_JUEGO)));
+                                                   Editable=No }
+  }
+  KEYS
+  {
+    {    ;CODIGO_TIPO_JUEGO                       ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50001 PAISES
+{
+  OBJECT-PROPERTIES
+  {
+    Date=18/10/17;
+    Time=20:43:48;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;COD_PAIS            ;Code10         }
+    { 2   ;   ;DESCRIPCION         ;Text30         }
+  }
+  KEYS
+  {
+    {    ;COD_PAIS                                ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50002 CIUDADES
+{
+  OBJECT-PROPERTIES
+  {
+    Date=19/10/17;
+    Time=15:22:52;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;COD_CIUDAD          ;Code10         }
+    { 2   ;   ;COD_PAIS            ;Code10        ;TableRelation=PAISES.COD_PAIS }
+    { 3   ;   ;DESCRIPCION         ;Text30         }
+  }
+  KEYS
+  {
+    {    ;COD_CIUDAD                              ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50005 JUEGOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=02/11/17;
+    Time=16:07:23;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;CODIGO JUEGO        ;Code10         }
+    { 2   ;   ;FECHA INICIO        ;DateTime       }
+    { 3   ;   ;FECHA FIN           ;DateTime       }
+    { 4   ;   ;NUMERO DE JUGADORES ;Integer        }
+    { 5   ;   ;TIPO DE JUEGOS      ;Code10        ;TableRelation="TIPOS DE JUEGOS".CODIGO_TIPO_JUEGO }
+    { 6   ;   ;CLASE DE JUEGO      ;Option        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup("TIPOS DE JUEGOS"."CLASE DE JUEGO" WHERE (CODIGO_TIPO_JUEGO=FIELD(CODIGO JUEGO)));
+                                                   OptionString=Mesa,Did†cticos,F°sicos;
+                                                   Editable=No }
+    { 7   ;   ;DESCRIPCION TIPO DE JUEGO;Text30   ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup("TIPOS DE JUEGOS".DESCRIPCION WHERE (CODIGO_TIPO_JUEGO=FIELD(TIPO DE JUEGOS)));
+                                                   Editable=No }
+    { 8   ;   ;INTERESANTE         ;Integer        }
+  }
+  KEYS
+  {
+    {    ;CODIGO JUEGO,TIPO DE JUEGOS             ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50006 JUGADORES
+{
+  OBJECT-PROPERTIES
+  {
+    Date=02/11/17;
+    Time=16:06:26;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;CODIGO JUGADOR      ;Code10         }
+    { 2   ;   ;NOMBRE JUGADOR      ;Text30         }
+    { 3   ;   ;CODIGO CIUDAD       ;Code10        ;TableRelation=CIUDADES.COD_CIUDAD }
+    { 4   ;   ;DESCRIPCION CIUDAD  ;Text30        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(CIUDADES.DESCRIPCION WHERE (DESCRIPCION=FIELD(DESCRIPCION CIUDAD)));
+                                                   Editable=No }
+    { 5   ;   ;CODIGO PAIS         ;Code10        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(CIUDADES.COD_PAIS WHERE (COD_CIUDAD=FIELD(CODIGO CIUDAD))) }
+    { 6   ;   ;DESCRIPCION PAIS    ;Text30        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(PAISES.DESCRIPCION WHERE (COD_PAIS=FIELD(CODIGO PAIS)));
+                                                   Editable=No }
+  }
+  KEYS
+  {
+    {    ;CODIGO JUGADOR                          ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50007 JUGADOR EN JUEGO
+{
+  OBJECT-PROPERTIES
+  {
+    Date=02/11/17;
+    Time=16:05:32;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;CODIGO JUGADOR      ;Code10        ;TableRelation=JUGADORES."CODIGO JUGADOR" }
+    { 2   ;   ;CODIGO JUEGO        ;Code10        ;TableRelation=JUEGOS."CODIGO JUEGO" }
+    { 3   ;   ;DESCRIPCI‡N ACTUACI‡N;Text30        }
+    { 4   ;   ;PUNTOS              ;Integer        }
+    { 5   ;   ;NOMBRE DEL JUGADOR  ;Text30        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(JUGADORES."NOMBRE JUGADOR" WHERE (CODIGO JUGADOR=FIELD(CODIGO JUGADOR)));
+                                                   Editable=No }
+    { 6   ;   ;DESCRIPCION TIPO DE JUEGO;Text30   ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup("TIPOS DE JUEGOS".DESCRIPCION WHERE (CODIGO_TIPO_JUEGO=FIELD(TIPO DE JUEGO)));
+                                                   Editable=No }
+    { 7   ;   ;TIPO DE JUEGO       ;Code10        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(JUEGOS."TIPO DE JUEGOS" WHERE (CODIGO JUEGO=FIELD(CODIGO JUEGO)));
+                                                   Editable=No }
+    { 8   ;   ;CLASE DE JUEGO      ;Option        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(JUEGOS."CLASE DE JUEGO" WHERE (TIPO DE JUEGOS=FIELD(TIPO DE JUEGO)));
+                                                   OptionString=Mesa,Did†cticos,F°sicos;
+                                                   Editable=No }
+  }
+  KEYS
+  {
+    {    ;CODIGO JUGADOR,CODIGO JUEGO             ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50008 EQUINOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=02/11/17;
+    Time=15:53:40;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    LookupPageID=Page50008;
+    DrillDownPageID=Page50008;
+  }
+  FIELDS
+  {
+    { 1   ;   ;CODIGO EQUINO       ;Code10         }
+    { 2   ;   ;NOMBRE              ;Text30         }
+    { 3   ;   ;SEXO                ;Boolean        }
+    { 4   ;   ;CODIGO PADRE        ;Code10        ;TableRelation=EQUINOS."CODIGO EQUINO" WHERE (SEXO=CONST(Yes)) }
+    { 5   ;   ;CODIGO MADRE        ;Code10        ;TableRelation=EQUINOS."CODIGO EQUINO" WHERE (SEXO=CONST(No)) }
+    { 6   ;   ;RAZA                ;Option        ;OptionString=Alaz†n,Mustang,Asturcom,hispana,Ibicencos }
+    { 7   ;   ;NUMERO DE HIJOS COMO PADRE;Integer ;FieldClass=FlowField;
+                                                   CalcFormula=Count(EQUINOS WHERE (CODIGO PADRE=FIELD(CODIGO EQUINO)));
+                                                   Editable=No }
+    { 8   ;   ;NUMERO DE HIJAS COMO MADRE;Integer ;FieldClass=FlowField;
+                                                   CalcFormula=Count(EQUINOS WHERE (CODIGO MADRE=FIELD(CODIGO EQUINO)));
+                                                   Editable=No }
+  }
+  KEYS
+  {
+    {    ;CODIGO EQUINO                           ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50000 frmTIPOS_DE_JUEGOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=27/10/17;
+    Time=15:50:24;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50000;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr=CODIGO_TIPO_JUEGO }
+
+    { 1000000003;2;Field  ;
+                SourceExpr=DESCRIPCION }
+
+    { 1000000004;2;Field  ;
+                SourceExpr="CLASE DE JUEGO" }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="TOTAL JUEGOS TERMINADOS" }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="TOTAL JUEGOS SIN TERMINAR" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr="TOTAL DE JUEGOS" }
+
+    { 1000000008;2;Field  ;
+                SourceExpr="MAXIMA PUNTUACION VISTOSIDAD" }
+
+    { 1000000009;2;Field  ;
+                SourceExpr="MINIMA PUNTUACI‡N VISTOSIDAD" }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50006 frmJUEGOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13/10/17;
+    Time=15:59:27;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50005;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="CODIGO JUEGO" }
+
+    { 1000000003;2;Field  ;
+                SourceExpr="FECHA INICIO" }
+
+    { 1000000004;2;Field  ;
+                SourceExpr="FECHA FIN" }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="NUMERO DE JUGADORES" }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="TIPO DE JUEGOS" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr="CLASE DE JUEGO" }
+
+    { 1000000008;2;Field  ;
+                SourceExpr="DESCRIPCION TIPO DE JUEGO" }
+
+    { 1000000009;2;Field  ;
+                SourceExpr=INTERESANTE }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50007 frmJUGADORES
+{
+  OBJECT-PROPERTIES
+  {
+    Date=19/10/17;
+    Time=15:38:41;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50006;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="CODIGO JUGADOR" }
+
+    { 1000000003;2;Field  ;
+                SourceExpr="NOMBRE JUGADOR" }
+
+    { 1000000004;2;Field  ;
+                SourceExpr="CODIGO CIUDAD" }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="DESCRIPCION CIUDAD" }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="CODIGO PAIS" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr="DESCRIPCION PAIS" }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50008 frmEQUINOS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=26/10/17;
+    Time=15:45:06;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50008;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="CODIGO EQUINO" }
+
+    { 1000000003;2;Field  ;
+                SourceExpr=NOMBRE }
+
+    { 1000000004;2;Field  ;
+                SourceExpr=SEXO }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="CODIGO PADRE" }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="CODIGO MADRE" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr=RAZA }
+
+    { 1000000008;2;Field  ;
+                SourceExpr="NUMERO DE HIJOS COMO PADRE" }
+
+    { 1000000009;2;Field  ;
+                SourceExpr="NUMERO DE HIJAS COMO MADRE" }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
