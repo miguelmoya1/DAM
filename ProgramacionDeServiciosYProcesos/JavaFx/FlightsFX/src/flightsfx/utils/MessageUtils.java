@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package flightsfx.utils;
 
 /**
@@ -10,5 +5,11 @@ package flightsfx.utils;
  * @author Miguel
  */
 public class MessageUtils {
+    static void showError(String message) {
+        
+    }
     
+    static void showMessage(String message) {
+        
+    }
 }
