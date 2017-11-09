@@ -1,11 +1,15 @@
 package biblioteca;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Biblioteca {
 
@@ -79,7 +83,8 @@ public class Biblioteca {
                         break;
                     case "8":
                         System.out.println("Introduce la primera letra: ");
-                        mostrarConNombreInicial(con, entrada.nextLine());
+                        String nombre = entrada.nextLine();
+                        mostrarConNombreInicial(con, nombre);
                         break;
                     case "S":
                     case "s":
@@ -170,21 +175,18 @@ public class Biblioteca {
             System.out.println("No existe el libro " + fragmentoNombre + ".");
         }
     }
-    
+
     public static void mostrarConNombreInicial(Connection con, String nombre) {
         try {
-            Statement statement = con.createStatement();
-            String orden = "SELECT ContarUsuariosNPInicial2(" + nombre + ") total";
-
-            ResultSet rs = statement.executeQuery(orden);
-            System.out.println("Total: ");
-            
-            if (rs.next()) {
-                System.out.println(rs.getString("total"));
-            }
-            statement.close();
-            rs.close();
+            CallableStatement cStmt = con.prepareCall(
+                    "{call ContarUsuariosNPInicial2(?)}");
+            cStmt.registerOutParameter(1, Types.INTEGER);
+            cStmt.setString(1, nombre);
+            cStmt.execute();
+            int resultado = cStmt.getInt(1);
+            System.out.println("Resultado: " + resultado);
         } catch (SQLException e) {
+            e.getStackTrace();
         }
     }
 
